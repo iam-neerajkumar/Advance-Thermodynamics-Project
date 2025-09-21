@@ -31,7 +31,7 @@ Simulate the thermal dissociation of pure CO₂ and determine the mole fractions
 - `README.md` – Project documentation
 
 ## Plots
-![CO2](lid_driven/PLOTS/STREAMLINES/streamlines_Re100.png)
+![CO2](PLOT/figure_CO2.png)
 
 ## Author
 
