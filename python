@@ -1,0 +1,37 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load data from the txt file
+file_path = 'X_CO.txt'  
+data = pd.read_csv(file_path, delim_whitespace=True, header=None, names=['Temperature', 'Pressure', 'MoleFraction_CO'])
+
+# Sort data by Temperature to create smooth lines
+data_sorted = data.sort_values('Temperature')
+
+# Create a figure and axis
+plt.figure(figsize=(8, 6))
+
+# Normalize temperature values to map them to a color scale
+scatter = plt.scatter(data['Pressure'], data['MoleFraction_CO'], c=data['Temperature'], cmap='viridis', edgecolors='k', label='Data points')
+
+# Create a line plot for each temperature
+for temp in np.unique(data_sorted['Temperature']):
+    temp_data = data_sorted[data_sorted['Temperature'] == temp]
+    plt.plot(temp_data['Pressure'], temp_data['MoleFraction_CO'], color=plt.cm.viridis((temp - data_sorted['Temperature'].min()) / (data_sorted['Temperature'].max() - data_sorted['Temperature'].min())), label=f'Temperature = {temp} K')
+
+# Logarithmic scale for pressure and mole fraction
+plt.xscale('log')  
+plt.yscale('log')  
+
+# Add labels and title
+plt.xlabel('PRESSURE (atm)')
+plt.ylabel('MOLE FRACTION OF CO (X_CO)')
+plt.title('MOLE FRACTION VS PRESSURE AT VARIOUS TEMPERATURE (K)')
+
+# Add a color bar to show the temperature scale
+plt.colorbar(scatter, label='TEMPERATURE (K)')
+
+# Show the plot without grid lines
+plt.tight_layout()
+plt.show()
