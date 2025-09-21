@@ -30,4 +30,11 @@ Simulate the thermal dissociation of pure CO₂ and determine the mole fractions
 - `plot.py` – Python script for plotting results  
 - `README.md` – Project documentation
 
+## Plots
+![CO2](lid_driven/PLOTS/STREAMLINES/streamlines_Re100.png)
+
+## Author
+
+Neeraj Kumar
+
 
